@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conecta — Simulador de grafos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">✦</div><div><strong>conecta<span>.</span></strong><small>Laboratorio de redes</small></div></div>
+      <div class="side-label">EXPLORAR</div>
+      <div class="nav active">◉ <span>Red de amistades</span></div>
+      <div class="nav">▦ <span>Matriz de adyacencia</span></div>
+      <div class="side-bottom"><span class="status-dot"></span> Simulador activo <br><small>Proyecto de estructuras de datos</small></div>
+    </aside>
+
+    <main>
+      <header class="topbar"><div><span class="eyebrow">ESTRUCTURAS DE DATOS AVANZADAS</span><h1>Tu mundo, conectado<span class="dot">.</span></h1><p>Descubre cómo funcionan los grafos en una red social.</p></div><span class="tag">● DEMO INTERACTIVA</span></header>
+      <div class="stats"><div class="stat"><span>👥 Usuarios</span><strong id="totalUsuarios">6</strong></div><div class="stat"><span>🔗 Amistades</span><strong id="totalAmistades">0</strong></div><div class="stat"><span>✨ Sugerencias</span><strong id="totalSugerencias">0</strong></div></div>
+      <section class="content-grid">
+        <div class="panel network-panel">
+          <div class="panel-heading"><div><span class="eyebrow">VISUALIZACIÓN</span><h2>Grafo de amistades</h2></div><span class="legend"><i></i> Conexión de amistad</span></div>
+          <p class="hint">Haz clic en un perfil para explorarlo. Las líneas representan amistades.</p>
+          <svg id="grafo" viewBox="0 0 640 440" aria-label="Grafo de amistades interactivo" role="img"></svg>
+          <div class="network-footer"><span><b>● Nodo</b> = persona</span><span><b>— Arista</b> = amistad</span><span>Grafo no dirigido</span></div>
+        </div>
+        <div class="panel control-panel">
+          <div class="panel-heading"><div><span class="eyebrow">PANEL DE CONTROL</span><h2>Explorar conexiones</h2></div></div>
+          <div class="chosen-profile" id="perfil"></div>
+          <label for="usuario">Selecciona un usuario</label><select id="usuario"></select>
+          <div class="section-line"><h3>Amistades actuales</h3><span class="pill" id="numeroAmigos">0</span></div>
+          <div id="listaAmigos" class="chips"></div>
+          <div class="section-line"><h3>Personas que quizá conozcas</h3><span class="tiny">Amigos en común</span></div>
+          <div id="sugerencias" class="suggestions"></div>
+          <div class="new-user-box">
+            <label for="nuevoUsuario">Agregar un usuario (nuevo nodo)</label>
+            <div class="new-user-row"><input id="nuevoUsuario" type="text" maxlength="18" placeholder="Ej. Camila" autocomplete="off"><button id="crearUsuario" class="primary">＋ Crear</button></div>
+            <small>El nuevo perfil aparecerá sin amistades y ampliará la matriz.</small>
+          </div>
+          <label for="otroUsuario">Modificar una conexión</label><select id="otroUsuario"></select>
+          <div class="actions"><button id="agregar" class="primary">＋ Agregar amistad</button><button id="eliminar" class="secondary">− Eliminar</button></div>
+          <div class="feedback" id="mensaje" aria-live="polite">Selecciona dos personas para modificar su amistad.</div>
+        </div>
+        <div class="panel matrix-panel">
+          <div class="panel-heading"><div><span class="eyebrow">REPRESENTACIÓN EN MEMORIA</span><h2>Matriz de adyacencia</h2></div><span class="tag-soft" id="tamanoMatriz">6 × 6</span></div>
+          <p class="hint">La matriz se genera a partir del grafo. <b>1</b> significa que existe amistad y <b>0</b> que no existe. Selecciona una celda.</p>
+          <div class="matrix-wrap"><table id="matriz" aria-label="Matriz de adyacencia"></table></div>
+          <div class="matrix-note" id="explicacionMatriz">Selecciona una celda para ver qué significa.</div>
+        </div>
+        <div class="panel info-panel"><span class="eyebrow">CÓMO FUNCIONA</span><h2>Del grafo a la matriz</h2><div class="learning"><div class="learn"><span class="step">01</span><div><b>Grafo</b><p>Las personas son nodos. Cada amistad conecta dos nodos mediante una arista.</p></div></div><div class="learn"><span class="step">02</span><div><b>Matriz</b><p>Cada fila y columna representa una persona. Un <b>1</b> indica conexión directa.</p></div></div><div class="learn"><span class="step">03</span><div><b>JavaScript</b><p>Al agregar una amistad, se modifica el grafo y se vuelve a generar la matriz.</p></div></div></div><button id="restablecer" class="reset">↺ Restablecer red original</button></div>
+      </section>
+      <footer>CONÉCTA • DEMOSTRACIÓN EDUCATIVA DE GRAFOS Y MATRICES EN JAVASCRIPT</footer>
+    </main>
+  </div>
+  <!-- Primero se carga la lógica y luego la interfaz -->
+  <script src="logica.js"></script>
+  <script src="interfaz.js"></script>
+</body>
+</html>
